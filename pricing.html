@@ -12,27 +12,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     <style>
-        /* Base Variables (Default: Dark Mode Colors) */
         :root {
-            --primary-color: #b89f66; /* Gold Accent */
+            --primary-color: #b89f66;
+            --primary-dark: #9c8455;
             --bg-primary: #1a1a1a;
             --bg-secondary: #2c2c2c; 
             --text-primary: #ffffff; 
             --text-secondary: #b0b0b0; 
             --highlight-box-shadow: 0 4px 25px rgba(184, 159, 102, 0.15); 
-            --success-color: #4CAF50; /* Green for local highlight */
+            --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.2);
+            --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            --success-color: #4CAF50;
         }
         
-        /* Light Mode Overrides */
         body.light-mode {
             --bg-primary: #ffffff;
             --bg-secondary: #f0f0f0;
             --text-primary: #212121;
             --text-secondary: #555555;
             --highlight-box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+            --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Base Body Styling */
         body {
             font-family: 'Inter', Arial, sans-serif; 
             margin: 0;
@@ -41,38 +43,192 @@
             background-color: var(--bg-primary); 
             color: var(--text-primary);
             transition: background-color 0.4s ease, color 0.4s ease; 
+            min-width: 320px;
         }
         
-        /* Professional Typography Hierarchy */
         h1, h2, h3 {
             font-family: 'Poppins', sans-serif; 
             letter-spacing: 0.02em; 
             font-weight: 700;
         }
         
-        /* LOGO, BUTTONS, HEADER/NAV STYLING (Kept consistent) */
         .logo-image { height: 40px; width: auto; vertical-align: middle; transition: transform 0.2s ease-in-out; }
-        @keyframes rotate-logo { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .rotating .logo-image { animation: rotate-logo 2s linear forwards; }
-        .btn { text-decoration: none; padding: 12px 30px; border-radius: 5px; font-weight: 600; font-family: 'Poppins', sans-serif; transition: background-color 0.3s ease, transform 0.1s; text-transform: uppercase; }
-        .btn-primary { background-color: var(--primary-color); color: #1a1a1a; border: none; box-shadow: 0 4px 10px rgba(184, 159, 102, 0.4); }
-        .btn-primary:hover { background-color: #9c8455; transform: translateY(-3px); }
-        .main-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px; background-color: var(--bg-primary); border-bottom: 1px solid var(--bg-secondary); position: sticky; top: 0; z-index: 1000; }
-        .main-nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 40px; }
-        .nav-link { text-decoration: none; color: var(--text-secondary); font-weight: 500; padding: 5px 0; transition: color 0.3s ease; text-transform: uppercase; font-size: 0.95em; font-family: 'Inter', sans-serif; }
-        .nav-link:hover, .nav-link.active { color: var(--primary-color); border-bottom: 3px solid var(--primary-color); }
-        #mode-toggle { background-color: var(--bg-secondary); color: var(--primary-color); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 20px; font-weight: 500; font-family: 'Inter', sans-serif; transition: background-color 0.3s; }
         
-        /* --- Pricing Page Specific Styling --- */
+        .btn { 
+            text-decoration: none; padding: 12px 30px; border-radius: 5px; font-weight: 600; font-family: 'Poppins', sans-serif; 
+            transition: background-color 0.3s ease, transform 0.1s; text-transform: uppercase; font-size: 0.9em;
+            white-space: nowrap;
+        }
+        
+        .btn-primary { 
+            background-color: var(--primary-color); 
+            color: #1a1a1a; 
+            border: none; 
+            box-shadow: 0 4px 10px rgba(184, 159, 102, 0.4); 
+            font-weight: 700; 
+            padding: 15px 35px; 
+            font-size: 1em; 
+            border-radius: 8px; 
+        }
+        .btn-primary:hover { 
+            background-color: var(--primary-dark); 
+            transform: translateY(-3px); 
+        }
+        
+        .btn-nav {
+            background-color: transparent !important; 
+            color: var(--text-primary) !important; 
+            border: 2px solid var(--primary-color); 
+            box-shadow: none !important; 
+            font-weight: 500 !important; 
+            font-family: 'Inter', sans-serif !important; 
+            text-transform: none !important; 
+            padding: 8px 18px !important; 
+            font-size: 0.95em !important; 
+            border-radius: 5px !important; 
+        }
+        .btn-nav:hover {
+            background-color: var(--primary-color) !important;
+            color: var(--bg-primary) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            text-align: left;
+        }
+        .feature-list li {
+            color: var(--text-primary);
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--bg-secondary);
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .feature-list .icon {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+        }
+        .pricing-card.cross-border .feature-list .icon {
+            color: var(--primary-color);
+        }
+        .pricing-card:not(.cross-border) .feature-list .icon {
+            color: var(--success-color);
+        }
+
+        .main-header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 80px; background-color: var(--bg-primary); 
+            border-bottom: 1px solid var(--bg-secondary); 
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: var(--header-shadow);
+        }
+        .main-nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 40px; }
+        .nav-link { 
+            text-decoration: none; color: var(--text-secondary); font-weight: 500; 
+            padding: 5px 0; transition: color 0.3s ease; text-transform: uppercase; 
+            font-size: 0.95em; font-family: 'Inter', sans-serif; white-space: nowrap;
+        }
+        .nav-link:hover, .nav-link.active { 
+            color: var(--primary-color); 
+            border-bottom: 3px solid var(--primary-color); 
+        }
+
+        #mode-toggle.settings-gear { 
+            background: transparent; 
+            color: var(--primary-color); 
+            border: 1.5px solid var(--primary-color); 
+            border-radius: 50%; 
+            cursor: pointer; 
+            margin-left: 15px;
+            height: 45px; 
+            width: 45px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0; 
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+        }
+        #mode-toggle.settings-gear:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-primary);
+            transform: rotate(45deg); 
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            display: none; 
+            cursor: pointer;
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+        .menu-toggle:hover {
+            color: var(--text-secondary);
+        }
+
+        .loader {
+            border: 8px solid var(--bg-secondary);
+            border-top: 8px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px; height: 50px;
+            animation: none;
+        }
+        @keyframes fastSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loader.link-spin {
+            animation: fastSpin 1.5s linear infinite;
+        }
+        #link-spinner-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
         .pricing-section {
             padding: 80px 5%;
             text-align: center;
             background-color: var(--bg-secondary);
         }
         
-        .pricing-section h1 { font-size: 3em; color: var(--primary-color); margin-bottom: 10px; }
+        .pricing-section h1 { 
+            font-size: 3em; 
+            color: var(--primary-color); 
+            margin-bottom: 10px; 
+        }
         
-        .pricing-section > p { font-size: 1.2em; color: var(--text-secondary); max-width: 900px; margin: 0 auto 40px auto; }
+        .pricing-section > p { 
+            font-size: 1.2em; 
+            color: var(--text-secondary); 
+            max-width: 900px; 
+            margin: 0 auto 40px auto; 
+        }
         
         .equipment-display {
             font-size: 1.4em;
@@ -99,7 +255,7 @@
             max-width: 450px;
             padding: 40px 30px;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: var(--shadow-dark);
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid var(--bg-secondary);
@@ -111,10 +267,12 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
         }
         
-        /* Highlight the Cross-Border Plan as the feature-rich, higher tier */
         .pricing-card.cross-border {
-             border: 3px solid var(--primary-color);
-             transform: translateY(-10px);
+            border: 3px solid var(--primary-color);
+            transform: translateY(-10px);
+        }
+        .pricing-card.cross-border:hover {
+            transform: translateY(-15px);
         }
 
         .pricing-card h2 {
@@ -151,173 +309,412 @@
             text-transform: uppercase;
         }
         
-        /* --- Footer Styling --- */
-        .main-footer { background-color: var(--bg-primary); color: white; padding: 45px 80px; font-size: 0.9em; text-align: center; border-top: 1px solid var(--bg-secondary); }
-        .footer-links { list-style: none; padding: 0; margin: 20px 0; display: flex; justify-content: center; gap: 25px; }
-        .footer-links a { color: var(--primary-color); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; }
-        .footer-links a:hover { color: var(--text-primary); }
+        .main-footer { 
+            background-color: var(--bg-primary); 
+            color: var(--text-secondary); 
+            padding: 45px 80px; 
+            font-size: 0.9em; 
+            text-align: center; 
+            border-top: 1px solid var(--bg-secondary); 
+        }
+        .footer-links { 
+            list-style: none; padding: 0; margin: 20px 0; 
+            display: flex; justify-content: center; gap: 25px; 
+        }
+        .footer-links a { 
+            color: var(--primary-color); text-decoration: none; 
+            font-family: 'Inter', sans-serif; font-weight: 400; 
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { 
+            color: var(--text-primary); 
+        }
         .social-icons a { 
             color: var(--primary-color); 
             margin: 0 10px; 
             font-size: 1.8em; 
             text-decoration: none; 
-            transition: color 0.3s; /* Added transition for hover */
+            transition: color 0.3s; 
         }
         .social-icons a:hover { 
             color: var(--text-secondary); 
         }
+        
+        @media (max-width: 992px) {
+            .main-header {
+                padding: 15px 40px;
+            }
+            .main-nav ul {
+                gap: 20px;
+            }
+            .pricing-section h1 {
+                font-size: 2.5em;
+            }
+            .pricing-section > p {
+                font-size: 1.1em;
+            }
+            .pricing-container {
+                gap: 30px;
+            }
+        }
 
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 15px 20px;
+                flex-wrap: wrap; 
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .header-actions {
+                order: 2; 
+                gap: 5px;
+            }
+            
+            .main-nav {
+                order: 3; 
+                width: 100%;
+                margin-top: 10px;
+                display: none; 
+            }
+            .main-nav.active {
+                display: flex; 
+                flex-direction: column;
+                background-color: var(--bg-primary);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                z-index: 999;
+                border-bottom: 1px solid var(--bg-secondary);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+            }
+            .main-nav ul {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+                padding: 10px 0;
+            }
+            .nav-link {
+                padding: 10px 20px;
+                border-bottom: none !important; 
+            }
+            .nav-link.active {
+                border-left: 3px solid var(--primary-color) !important; 
+                border-bottom: none !important;
+            }
+            
+            .btn-primary {
+                padding: 10px 18px;
+                font-size: 0.9em;
+            }
+            
+            .btn-nav {
+                padding: 8px 15px !important; 
+                font-size: 0.9em !important;
+            }
+            
+            #mode-toggle.settings-gear {
+                height: 40px;
+                width: 40px;
+                font-size: 1.1em;
+                margin-left: 10px;
+            }
+
+            .pricing-section h1 {
+                font-size: 2em;
+            }
+            .equipment-display {
+                font-size: 1.1em;
+                padding: 10px 20px;
+            }
+            .pricing-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 25px;
+            }
+            .pricing-card {
+                max-width: 90%; 
+                padding: 30px 20px;
+            }
+            .pricing-card.cross-border {
+                transform: translateY(0); 
+            }
+            .pricing-card.cross-border:hover {
+                transform: translateY(-8px); 
+            }
+
+            .main-footer {
+                padding: 30px 20px;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-image { height: 35px; }
+            .pricing-section h1 {
+                font-size: 1.8em;
+            }
+            .price-display {
+                font-size: 3em;
+            }
+        }
     </style>
 </head>
 <body class="dark-mode"> 
-    <header class="main-header">
-        <div class="logo-container">
-            <a href="index.html" class="logo-link">
-                <img src="logo.png" alt="TrackLink GPS Logo" class="logo-image">
-            </a>
-        </div>
-        
-        <nav class="main-nav">
-            <ul id="main-nav-list">
-                <li><a href="index.html" class="nav-link">Home</a></li> 
-                <li><a href="features.html" class="nav-link">Features</a></li> 
-                <li><a href="pricing.html" class="nav-link active">Pricing</a></li> 
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-        </nav>
-        
-        <div class="header-actions">
-            <a href="#" class="btn btn-primary">Log In / Sign Up</a>
-            <button id="mode-toggle">Switch to Light Mode ☀️</button>
-        </div>
-    </header>
+    
+    <div id="link-spinner-overlay">
+        <div id="center-spinner" class="loader"></div>
+    </div>
 
-    <main>
-        <section class="pricing-section">
-            <h1>Simple, Operational Pricing</h1>
-            <p>Our operational plans ensure accurate, reliable tracking whether your fleet remains local or crosses borders.</p>
-            
-            <div class="equipment-display">
-                One-time Equipment Fee (All Plans): <strong>K1800</strong> per unit
+    <div id="main-content">
+        <header class="main-header">
+            <div class="logo-container">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="TrackLink GPS Logo" class="logo-image">
+                </a>
             </div>
             
-            <div class="pricing-container">
+            <nav class="main-nav" id="main-nav">
+                <ul id="main-nav-list">
+                    <li><a href="index.html#hero" class="nav-link">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="features.html" class="nav-link">Features</a></li> 
+                    <li><a href="pricing.html" class="nav-link active">Pricing</a></li> 
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="#" class="btn btn-primary btn-nav">CLIENT LOGIN</a>
+                <button id="mode-toggle" class="settings-gear">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <i class="fas fa-bars menu-toggle" id="menu-toggle-icon"></i>
+            </div>
+        </header>
+
+        <main>
+            <section class="pricing-section">
+                <h1>Simple, Operational Pricing</h1>
+                <p>Our operational plans ensure accurate, reliable tracking whether your fleet remains local or crosses borders.</p>
                 
-                <div class="pricing-card">
-                    <h2>Local Operations Plan</h2>
-                    
-                    <div class="highlight-bar" style="background-color: var(--success-color);">
-                        <i class="fas fa-gift"></i> **K250 / asset / month**
-                    </div>
-
-                    <div class="price-display" style="color: var(--success-color);">
-                        K250 <span>/ asset / month</span>
-                    </div>
-                    
-                    <p style="color: var(--text-secondary); margin-bottom: 30px; margin-top: 20px;">Required for fleets operating **only within Zambia**. Includes all standard features.</p>
-                    
-                    <a href="contact.html" class="btn btn-primary" style="background-color: var(--success-color);">Start Local Tracking</a>
-                    
-                    <p style="font-size: 0.9em; margin-top: 15px; color: var(--text-secondary);">*First month subscription is **free**.</p>
+                <div class="equipment-display">
+                    One-time Equipment Fee (All Plans): <strong>K1800</strong> per unit
                 </div>
+                
+                <div class="pricing-container">
+                    
+                    <div class="pricing-card">
+                        <h2>Local Operations Plan</h2>
+                        
+                        <div class="highlight-bar" style="background-color: var(--success-color);">
+                            <i class="fas fa-gift"></i> **K250 / asset / month**
+                        </div>
 
-                <div class="pricing-card cross-border">
-                    <h2>Cross-Border Plan</h2>
-                    
-                    <p class="highlight-bar" style="background-color: var(--primary-color); color: var(--bg-primary);">
-                        <i class="fas fa-globe-africa"></i> **K350 / asset / month**
-                    </p>
-                    
-                    <div class="price-display">
-                        K350 <span>/ asset / month</span>
+                        <div class="price-display" style="color: var(--success-color);">
+                            K250 <span>/ asset / month</span>
+                        </div>
+                        
+                        <p style="color: var(--text-secondary); margin-bottom: 30px; margin-top: 20px;">Required for fleets operating **only within Zambia**. Includes all standard features.</p>
+                        
+                        <ul class="feature-list">
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Real-time GPS Tracking (Zambia Only)</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> 90-day Data History</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Speeding & Geofence Alerts</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Basic Reports (Mileage, Stops)</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Web & Mobile App Access</li>
+                            <li><span class="icon"><i class="fas fa-times-circle" style="color: var(--text-secondary);"></i></span> Cross-Border Roaming (Not Included)</li>
+                        </ul>
+                        
+                        <a href="contact.html" class="btn btn-primary" style="background-color: var(--success-color);">Start Local Tracking</a>
+                        
+                        <p style="font-size: 0.9em; margin-top: 15px; color: var(--text-secondary);">*First month subscription is **free**.</p>
                     </div>
 
-                    <p style="color: var(--text-secondary); margin-bottom: 30px; margin-top: 20px;">Required for fleets traversing **international borders** in the SADC region. Includes regional roaming.</p>
-                    
-                    <a href="contact.html" class="btn btn-primary">Start Cross-Border Tracking</a>
-                    
-                    <p style="font-size: 0.9em; margin-top: 15px; color: var(--text-secondary);">*Contact sales for fleets over 50 vehicles.</p>
+                    <div class="pricing-card cross-border">
+                        <h2>Cross-Border Plan</h2>
+                        
+                        <p class="highlight-bar" style="background-color: var(--primary-color); color: var(--bg-primary);">
+                            <i class="fas fa-globe-africa"></i> **K350 / asset / month**
+                        </p>
+                        
+                        <div class="price-display">
+                            K350 <span>/ asset / month</span>
+                        </div>
+
+                        <p style="color: var(--text-secondary); margin-bottom: 30px; margin-top: 20px;">Required for fleets traversing **international borders** in the SADC region. Includes regional roaming.</p>
+                        
+                        <ul class="feature-list">
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Real-time GPS Tracking (Regional)</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Full 1-year Data History</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Advanced Alerting (Ignition, Harsh Driving)</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Comprehensive Reporting & Exports</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Web & Mobile App Access</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> **Cross-Border Roaming (SADC)**</li>
+                        </ul>
+                        
+                        <a href="contact.html" class="btn btn-primary">Start Cross-Border Tracking</a>
+                        
+                        <p style="font-size: 0.9em; margin-top: 15px; color: var(--text-secondary);">*Contact sales for fleets over 50 vehicles.</p>
+
+                    </div>
 
                 </div>
+            </section>
+        </main>
 
+        <footer class="main-footer">
+            <ul class="footer-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/Tracklink.Official" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
+                <a href="https://www.tiktok.com/@tracklink_1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a> 
+                <a href="https://web.whatsapp.com/" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a> 
             </div>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <ul class="footer-links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="social-icons">
-            <a href="https://www.facebook.com/Tracklink.Official" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
-            <a href="https://www.tiktok.com/@tracklink_1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a> 
-            <a href="https://web.whatsapp.com/" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a> 
-        </div>
-        <p style="color: var(--text-secondary);">&copy; <span id="current-year">2025</span> TrackLink GPS System. All rights reserved.</p>
-    </footer>
+            <p style="color: var(--text-secondary);">&copy; <span id="current-year">2025</span> TrackLink GPS System. All rights reserved.</p>
+        </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             
-            // 1. AUTO-UPDATE COPYRIGHT YEAR (Added)
+            document.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+            });
+
+            document.addEventListener('keydown', function(event) {
+                if (event.keyCode == 123) {
+                    event.preventDefault();
+                    return false;
+                }
+                if (event.ctrlKey && event.shiftKey && (event.keyCode == 73 || event.keyCode == 74 || event.keyCode == 67)) {
+                    event.preventDefault();
+                    return false;
+                }
+                if (event.metaKey && event.altKey && (event.keyCode == 73 || event.keyCode == 74 || event.keyCode == 67)) {
+                    event.preventDefault();
+                    return false;
+                }
+                if (event.ctrlKey && event.keyCode == 85) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+            
+            const body = document.body;
+            const modeToggle = document.getElementById('mode-toggle');
+            const mainNav = document.getElementById('main-nav');
+            const menuToggleIcon = document.getElementById('menu-toggle-icon');
+            const navLinks = document.querySelectorAll('.main-nav .nav-link');
+            const spinnerOverlay = document.getElementById('link-spinner-overlay');
+            const centerSpinner = document.getElementById('center-spinner');
+            const themeKey = 'tracklinkTheme';
+
             const yearSpan = document.getElementById('current-year');
             if (yearSpan) {
                 yearSpan.textContent = new Date().getFullYear();
             }
 
-            // ===============================================
-            // 2. PERSISTENT DARK/LIGHT MODE LOGIC (GLOBAL)
-            // ===============================================
-            const modeToggle = document.getElementById('mode-toggle');
-            const body = document.body;
-            const themeKey = 'tracklinkTheme';
-
             function applyTheme(theme) {
                 if (theme === 'light') {
                     body.classList.add('light-mode');
-                    modeToggle.textContent = 'Switch to Dark Mode 🌙';
                 } else {
                     body.classList.remove('light-mode');
-                    modeToggle.textContent = 'Switch to Light Mode ☀️';
                 }
             }
-
-            // Load theme preference from Local Storage on page load
             const savedTheme = localStorage.getItem(themeKey);
-            if (savedTheme) {
-                applyTheme(savedTheme);
-            } else {
-                // Default to dark mode if no preference is saved
-                applyTheme('dark'); 
-            }
+            applyTheme(savedTheme || 'dark'); 
 
             modeToggle.addEventListener('click', () => {
-                const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
-                // Save and apply new theme
+                const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
                 localStorage.setItem(themeKey, newTheme);
                 applyTheme(newTheme);
             });
             
-            // ===============================================
-            // 3. LOGO ROTATION ANIMATION ON CLICK (GLOBAL)
-            // ===============================================
-            const navLinks = document.querySelectorAll('.main-nav .nav-link');
-            const logoLink = document.querySelector('.logo-container');
+            const currentPath = window.location.pathname.split('/').pop().split('#')[0] || 'index.html'; 
 
             navLinks.forEach(link => {
-                link.addEventListener('click', function(event) {
-                    // Start the rotation animation
-                    logoLink.classList.add('rotating');
-                    
-                    setTimeout(() => {
-                        logoLink.classList.remove('rotating');
-                    }, 2000); 
+                const linkHref = link.getAttribute('href');
+                const resolvedLinkPath = linkHref.split('/').pop().split('#')[0] || 'index.html';
+
+                if (resolvedLinkPath === currentPath) {
+                    if (currentPath === 'pricing.html' && resolvedLinkPath === 'pricing.html') {
+                        link.classList.add('active');
+                    }
+                    else if (link.textContent.toLowerCase() === 'pricing' && resolvedLinkPath === 'pricing.html') {
+                           link.classList.add('active');
+                    }
+                    else {
+                        link.classList.remove('active');
+                    }
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            if (menuToggleIcon && mainNav) {
+                const toggleMenu = () => {
+                    const isVisible = mainNav.classList.toggle('active');
+                    menuToggleIcon.classList.toggle('fa-bars', !isVisible);
+                    menuToggleIcon.classList.toggle('fa-times', isVisible);
+                };
+                menuToggleIcon.addEventListener('click', toggleMenu);
+                
+                document.querySelectorAll('.main-nav .nav-link').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        if (window.innerWidth <= 768 && mainNav.classList.contains('active')) {
+                            toggleMenu();
+                        }
+                    });
                 });
+                
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        mainNav.classList.remove('active');
+                        menuToggleIcon.classList.remove('fa-times');
+                        menuToggleIcon.classList.add('fa-bars');
+                    }
+                });
+            }
+            
+            const internalLinks = document.querySelectorAll('a[href]');
+
+            internalLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                const isExternalOrAnchor = href.startsWith('http') || href.startsWith('#') || (href.split('/').pop().split('#')[0] === currentPath && href.includes('#'));
+                
+                if (!isExternalOrAnchor) {
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault(); 
+                        
+                        if (spinnerOverlay) {
+                            spinnerOverlay.style.display = 'flex';
+                            setTimeout(() => {
+                                spinnerOverlay.style.opacity = '1';
+                                centerSpinner.classList.add('link-spin');
+                            }, 10); 
+                        }
+
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 500); 
+                    });
+                } else if (href.startsWith('#')) {
+                    link.addEventListener('click', function() {
+                        setTimeout(() => {
+                        }, 2000); 
+                    });
+                }
             });
         });
     </script>
