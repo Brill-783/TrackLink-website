@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackLink | Pricing Plans</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* Base Variables (Default: Dark Mode Colors) */
+        :root {
+            --primary-color: #b89f66; /* Gold Accent */
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2c2c2c; 
+            --text-primary: #ffffff; 
+            --text-secondary: #b0b0b0; 
+            --highlight-box-shadow: 0 4px 25px rgba(184, 159, 102, 0.15); 
+            --success-color: #4CAF50; /* Green for local highlight */
+        }
+        
+        /* Light Mode Overrides */
+        body.light-mode {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f0f0f0;
+            --text-primary: #212121;
+            --text-secondary: #555555;
+            --highlight-box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Base Body Styling */
+        body {
+            font-family: 'Inter', Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: var(--bg-primary); 
+            color: var(--text-primary);
+            transition: background-color 0.4s ease, color 0.4s ease; 
+        }
+        
+        /* Professional Typography Hierarchy */
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif; 
+            letter-spacing: 0.02em; 
+            font-weight: 700;
+        }
+        
+        /* LOGO, BUTTONS, HEADER/NAV STYLING (Kept consistent) */
+        .logo-image { height: 40px; width: auto; vertical-align: middle; transition: transform 0.2s ease-in-out; }
+        @keyframes rotate-logo { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .rotating .logo-image { animation: rotate-logo 2s linear forwards; }
+        .btn { text-decoration: none; padding: 12px 30px; border-radius: 5px; font-weight: 600; font-family: 'Poppins', sans-serif; transition: background-color 0.3s ease, transform 0.1s; text-transform: uppercase; }
+        .btn-primary { background-color: var(--primary-color); color: #1a1a1a; border: none; box-shadow: 0 4px 10px rgba(184, 159, 102, 0.4); }
+        .btn-primary:hover { background-color: #9c8455; transform: translateY(-3px); }
+        .main-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px; background-color: var(--bg-primary); border-bottom: 1px solid var(--bg-secondary); position: sticky; top: 0; z-index: 1000; }
+        .main-nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 40px; }
+        .nav-link { text-decoration: none; color: var(--text-secondary); font-weight: 500; padding: 5px 0; transition: color 0.3s ease; text-transform: uppercase; font-size: 0.95em; font-family: 'Inter', sans-serif; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-color); border-bottom: 3px solid var(--primary-color); }
+        #mode-toggle { background-color: var(--bg-secondary); color: var(--primary-color); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 20px; font-weight: 500; font-family: 'Inter', sans-serif; transition: background-color 0.3s; }
+        
+        /* --- Pricing Page Specific Styling --- */
+        .pricing-section {
+            padding: 80px 5%;
+            text-align: center;
+            background-color: var(--bg-secondary);
+        }
+        
+        .pricing-section h1 { font-size: 3em; color: var(--primary-color); margin-bottom: 10px; }
+        
+        .pricing-section > p { font-size: 1.2em; color: var(--text-secondary); max-width: 900px; margin: 0 auto 40px auto; }
+        
+        .equipment-display {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 20px auto 50px auto;
+            padding: 15px 30px;
+            max-width: fit-content;
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background-color: var(--bg-primary);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--bg-secondary);
+            position: relative; 
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Highlight the Cross-Border Plan as the feature-rich, higher tier */
+        .pricing-card.cross-border {
+             border: 3px solid var(--primary-color);
+             transform: translateY(-10px);
+        }
+
+        .pricing-card h2 {
+            font-size: 2.2em;
+            color: var(--text-primary);
+            margin-top: 0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .price-display {
+            font-size: 4em;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .price-display span {
+            font-size: 0.3em;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+        
+        .highlight-bar {
+            background-color: var(--primary-color);
+            color: var(--bg-primary);
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+        
+        /* --- Footer Styling --- */
+        .main-footer { background-color: var(--bg-primary); color: white; padding: 45px 80px; font-size: 0.9em; text-align: center; border-top: 1px solid var(--bg-secondary); }
+        .footer-links { list-style: none; padding: 0; margin: 20px 0; display: flex; justify-content: center; gap: 25px; }
+        .footer-links a { color: var(--primary-color); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; }
+        .footer-links a:hover { color: var(--text-primary); }
+        .social-icons a { 
+            color: var(--primary-color); 
+            margin: 0 10px; 
+            font-size: 1.8em; 
+            text-decoration: none; 
+            transition: color 0.3s; /* Added transition for hover */
+        }
+        .social-icons a:hover { 
+            color: var(--text-secondary); 
+        }
+
+    </style>
+</head>
+<body class="dark-mode"> 
+    <header class="main-header">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="TrackLink GPS Logo" class="logo-image">
+            </a>
+        </div>
+        
+        <nav class="main-nav">
+            <ul id="main-nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li> 
+                <li><a href="features.html" class="nav-link">Features</a></li> 
+                <li><a href="pricing.html" class="nav-link active">Pricing</a></li> 
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-actions">
+            <a href="#" class="btn btn-primary">Log In / Sign Up</a>
+            <button id="mode-toggle">Switch to Light Mode ☀️</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="pricing-section">
+            <h1>Simple, Operational Pricing</h1>
+            <p>Our operational plans ensure accurate, reliable tracking whether your fleet remains local or crosses borders.</p>
+            
+            <div class="equipment-display">
+                One-time Equipment Fee (All Plans): <strong>K1800</strong> per unit
+            </div>
+            
+            <div class="pricing-container">
+                
+                <div class="pricing-card">
+                    <h2>Local Operations Plan</h2>
+                    
+                    <div class="highlight-bar" style="background-color: var(--success-color);">
+                        <i class="fas fa-gift"></i> **K250 / asset / month**
+                    </div>
+
+                    <div class="price-display" style="color: var(--success-color);">
+                        K250 <span>/ asset / month</span>
+                    </div>
+                    
+                    <p style="color: var(--text-secondary); margin-bottom: 30px; margin-top: 20px;">Required for fleets operating **only within Zambia**. Includes all standard features.</p>
+                    
+                    <a href="contact.html" class="btn btn-primary" style="background-color: var(--success-color);">Start Local Tracking</a>
+                    
+                    <p style="font-size: 0.9em; margin-top: 15px; color: var(--text-secondary);">*First month subscription is **free**.</p>
+                </div>
+
+                <div class="pricing-card cross-border">
+                    <h2>Cross-Border Plan</h2>
+                    
+                    <p class="highlight-bar" style="background-color: var(--primary-color); color: var(--bg-primary);">
+                        <i class="fas fa-globe-africa"></i> **K350 / asset / month**
+                    </p>
+                    
+                    <div class="price-display">
+                        K350 <span>/ asset / month</span>
+                    </div>
+
+                    <p style="color: var(--text-secondary); margin-bottom: 30px; margin-top: 20px;">Required for fleets traversing **international borders** in the SADC region. Includes regional roaming.</p>
+                    
+                    <a href="contact.html" class="btn btn-primary">Start Cross-Border Tracking</a>
+                    
+                    <p style="font-size: 0.9em; margin-top: 15px; color: var(--text-secondary);">*Contact sales for fleets over 50 vehicles.</p>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/Tracklink.Official" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
+            <a href="https://www.tiktok.com/@tracklink_1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a> 
+            <a href="https://web.whatsapp.com/" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a> 
+        </div>
+        <p style="color: var(--text-secondary);">&copy; <span id="current-year">2025</span> TrackLink GPS System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // 1. AUTO-UPDATE COPYRIGHT YEAR (Added)
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+            // ===============================================
+            // 2. PERSISTENT DARK/LIGHT MODE LOGIC (GLOBAL)
+            // ===============================================
+            const modeToggle = document.getElementById('mode-toggle');
+            const body = document.body;
+            const themeKey = 'tracklinkTheme';
+
+            function applyTheme(theme) {
+                if (theme === 'light') {
+                    body.classList.add('light-mode');
+                    modeToggle.textContent = 'Switch to Dark Mode 🌙';
+                } else {
+                    body.classList.remove('light-mode');
+                    modeToggle.textContent = 'Switch to Light Mode ☀️';
+                }
+            }
+
+            // Load theme preference from Local Storage on page load
+            const savedTheme = localStorage.getItem(themeKey);
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else {
+                // Default to dark mode if no preference is saved
+                applyTheme('dark'); 
+            }
+
+            modeToggle.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                // Save and apply new theme
+                localStorage.setItem(themeKey, newTheme);
+                applyTheme(newTheme);
+            });
+            
+            // ===============================================
+            // 3. LOGO ROTATION ANIMATION ON CLICK (GLOBAL)
+            // ===============================================
+            const navLinks = document.querySelectorAll('.main-nav .nav-link');
+            const logoLink = document.querySelector('.logo-container');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    // Start the rotation animation
+                    logoLink.classList.add('rotating');
+                    
+                    setTimeout(() => {
+                        logoLink.classList.remove('rotating');
+                    }, 2000); 
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

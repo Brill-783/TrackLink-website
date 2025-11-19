@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackLink | Enterprise GPS Fleet & Asset Management</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #b89f66;
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2c2c2c; 
+            --text-primary: #ffffff; 
+            --text-secondary: #b0b0b0; 
+            --highlight-box-shadow: 0 4px 25px rgba(184, 159, 102, 0.15); 
+        }
+        
+        body.light-mode {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f0f0f0;
+            --text-primary: #212121;
+            --text-secondary: #555555;
+            --highlight-box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: var(--bg-primary); 
+            color: var(--text-primary);
+            transition: background-color 0.4s ease, color 0.4s ease; 
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif; 
+            letter-spacing: 0.02em;
+            font-weight: 700;
+        }
+        
+        .logo-image {
+            height: 40px; 
+            width: auto;
+            vertical-align: middle;
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        @keyframes rotate-logo {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .rotating .logo-image {
+            animation: rotate-logo 2s linear forwards;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 30px; 
+            border-radius: 5px; 
+            font-weight: 600; 
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, transform 0.1s;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .btn-large {
+            padding: 18px 40px; 
+            font-size: 1.1em;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #1a1a1a; 
+            border: none; 
+            box-shadow: 0 4px 10px rgba(184, 159, 102, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: #9c8455; 
+            transform: translateY(-3px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color); 
+            border: 2px solid var(--primary-color); 
+            margin-left: 20px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-primary); 
+            border-color: var(--bg-primary); 
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px; 
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--bg-secondary); 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 40px; 
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary); 
+            font-weight: 500; 
+            padding: 5px 0;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.95em;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color); 
+            border-bottom: 3px solid var(--primary-color); 
+        }
+        
+        #mode-toggle {
+            background-color: var(--bg-secondary);
+            color: var(--primary-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 20px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        .hero-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 80px; 
+            background-color: var(--bg-primary);
+            gap: 100px; 
+        }
+
+        .hero-content {
+            max-width: 50%;
+        }
+
+        .hero-content h1 {
+            font-size: 4em; 
+            line-height: 1.1;
+            color: var(--primary-color); 
+            margin-bottom: 25px;
+        }
+        
+        .hero-content .lead {
+            font-size: 1.35em; 
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+        
+        .cta-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 50%; 
+            max-width: 650px;
+            height: 450px; 
+            overflow: hidden;
+            border: 2px solid var(--primary-color); 
+            border-radius: 8px;
+            box-shadow: var(--highlight-box-shadow);
+        }
+
+        .slide { 
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0; 
+            transition: opacity 0.8s ease-in-out; 
+            pointer-events: none; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: var(--bg-secondary);
+        }
+
+        .slide.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.9; /* Slightly increased opacity for better view of realistic images */
+        }
+        
+        .slide-caption {
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly darker caption background */
+            padding: 18px 15px; 
+            font-family: 'Inter', sans-serif;
+            font-weight: 500; /* Increased font weight for better readability */
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .prev-button, .next-button {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4); 
+            color: white; border: none; padding: 10px 15px; cursor: pointer; z-index: 10; font-size: 1.5em; line-height: 1;
+            transition: background 0.3s; border-radius: 5px;
+        }
+        .prev-button:hover, .next-button:hover { background: rgba(0, 0, 0, 0.8); }
+        .prev-button { left: 10px; }
+        .next-button { right: 10px; }
+
+        .features-preview {
+            padding: 100px 80px;
+            text-align: center;
+            background-color: var(--bg-secondary); 
+            border-top: 1px solid var(--bg-primary);
+        }
+        
+        .features-preview h2 {
+            font-size: 2.5em; 
+            margin-bottom: 20px; 
+            color: var(--text-primary);
+        }
+        
+        .features-preview > p {
+            color: var(--primary-color);
+            font-size: 1.3em;
+            margin-bottom: 70px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .feature-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px;
+        }
+
+        .feature-item {
+            background-color: var(--bg-primary); 
+            padding: 40px 30px; 
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--primary-color); 
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .feature-item .icon {
+            font-size: 3em; 
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: block;
+            text-align: center; 
+        }
+
+        .feature-item h3 {
+            font-size: 1.5em;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            text-align: center; 
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            font-size: 1em;
+            line-height: 1.6;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .main-footer {
+            background-color: var(--bg-primary); 
+            color: white;
+            padding: 45px 80px; 
+            font-size: 0.9em;
+            text-align: center;
+            border-top: 1px solid var(--bg-secondary);
+        }
+        
+        .footer-links {
+            list-style: none; padding: 0; margin: 20px 0;
+            display: flex; justify-content: center; gap: 25px;
+        }
+        
+        .footer-links a {
+            color: var(--primary-color); 
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .social-icons a {
+            color: var(--primary-color);
+            margin: 0 10px; font-size: 1.8em; 
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--text-secondary);
+        }
+        
+    </style>
+</head>
+<body class="dark-mode"> 
+    <header class="main-header">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="TrackLink GPS Logo" class="logo-image">
+            </a>
+        </div>
+        
+        <nav class="main-nav">
+            <ul id="main-nav-list">
+                <li><a href="index.html" class="nav-link active">Home</a></li> 
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-actions">
+            <a href="#" class="btn btn-primary">Log In / Sign Up</a>
+            <button id="mode-toggle">Switch to Light Mode ☀️</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>The Future of Enterprise Asset Intelligence.</h1>
+                <p class="lead">TrackLink provides a robust, scalable platform for real-time visibility, proactive maintenance, and streamlined operations across your entire global fleet.</p>
+                
+                <div class="cta-group">
+                    <a href="pricing.html" class="btn btn-primary btn-large">Get Started Now</a>
+                    <a href="features.html" class="btn btn-secondary btn-large">View All Features</a>
+                </div>
+            </div>
+            
+            <div class="slider-container" id="image-slider">
+                
+                <div class="slide active">
+                    <img src="slide1 (1).png" alt="Fleet Car on Highway with Real-Time Tracking">
+                    <div class="slide-caption">Real-Time Data Streams and 3D Mapping.</div>
+                </div>
+
+                <div class="slide">
+                    <img src="slide1 (2).png" alt="Commercial Truck for Driver Behavior Analysis">
+                    <div class="slide-caption">Performance Scorecards and Behavior Analysis.</div>
+                </div>
+
+                <div class="slide">
+                    <img src="slide1 (3).png" alt="Delivery Bike for Automated Maintenance">
+                    <div class="slide-caption">Automated Maintenance and Alert Management.</div>
+                </div>
+                
+                <button class="prev-button">❮</button>
+                <button class="next-button">❯</button>
+            </div>
+        </section>
+
+        <section class="features-preview" id="features">
+            <h2>Unparalleled Control, Uncompromised Reliability.</h2>
+            <p>Advanced telematics features designed for demanding commercial and logistical operations.</p>
+            <div class="feature-grid">
+                
+                <div class="feature-item">
+                    <i class="icon fas fa-map-marked-alt"></i>
+                    <h3>High-Precision GPS Tracking</h3>
+                    <p>Sub-meter accuracy and lightning-fast location updates, ensuring you always have the most current data for critical decision-making.</p>
+                </div>
+
+                <div class="feature-item">
+                    <i class="icon fas fa-tools"></i>
+                    <h3>Predictive Maintenance Scheduling</h3>
+                    <p>Receive automated alerts based on mileage or engine hours, ensuring timely service and reducing expensive unexpected downtime.</p>
+                </div>
+
+                <div class="feature-item">
+                    <i class="icon fas fa-tachometer-alt"></i>
+                    <h3>Driver Behavior Analysis (DBA)</h3>
+                    <p>Monitor harsh braking, rapid acceleration, and excessive idling to improve fleet safety, efficiency, and reduce insurance costs.</p>
+                </div>
+
+                <div class="feature-item">
+                    <i class="icon fas fa-shield-alt"></i>
+                    <h3>Theft Recovery & Security</h3>
+                    <p>Integrate with ignition control systems and receive immediate tamper alerts, drastically improving the chances of asset recovery.</p>
+                </div>
+                
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="main-footer">
+        <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="mailto:tracklink@gmail.com">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://wa.me/260573155118" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a> 
+            <a href="https://www.facebook.com/Tracklink.Official" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
+            <a href="https://www.tiktok.com/@tracklink_1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a> 
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 5px;">
+            <i class="fas fa-map-marker-alt"></i> **North Mead, Lusaka, Zambia** | 
+            <i class="fas fa-phone"></i> **+260 573 155 118**
+        </p>
+        <p style="color: var(--text-secondary);">&copy; <span id="current-year"></span> TrackLink GPS System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // 1. AUTO-UPDATE COPYRIGHT YEAR
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+            // 2. PERSISTENT DARK/LIGHT MODE LOGIC (GLOBAL)
+            const modeToggle = document.getElementById('mode-toggle');
+            const body = document.body;
+            const themeKey = 'tracklinkTheme';
+
+            function applyTheme(theme) {
+                if (theme === 'light') {
+                    body.classList.add('light-mode');
+                    modeToggle.textContent = 'Switch to Dark Mode 🌙';
+                } else {
+                    body.classList.remove('light-mode');
+                    modeToggle.textContent = 'Switch to Light Mode ☀️';
+                }
+            }
+
+            const savedTheme = localStorage.getItem(themeKey);
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else {
+                applyTheme('dark'); 
+            }
+
+            modeToggle.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                localStorage.setItem(themeKey, newTheme);
+                applyTheme(newTheme);
+            });
+            
+            // 3. LOGO ROTATION ANIMATION ON CLICK (GLOBAL)
+            const navLinks = document.querySelectorAll('.main-nav .nav-link');
+            const logoLink = document.querySelector('.logo-container');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    logoLink.classList.add('rotating');
+                    
+                    setTimeout(() => {
+                        logoLink.classList.remove('rotating');
+                    }, 2000); 
+                });
+            });
+
+            // 4. SLIDER LOGIC (for homepage only)
+            const slider = document.getElementById('image-slider');
+            if (slider) {
+                const slides = slider.querySelectorAll('.slide');
+                const prevButton = slider.querySelector('.prev-button');
+                const nextButton = slider.querySelector('.next-button');
+                let currentSlide = 0;
+
+                function showSlide(index) {
+                    if (index >= slides.length) {
+                        currentSlide = 0;
+                    } else if (index < 0) {
+                        currentSlide = slides.length - 1;
+                    } else {
+                        currentSlide = index;
+                    }
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    slides[currentSlide].classList.add('active');
+                }
+                function nextSlide() { showSlide(currentSlide + 1); }
+                nextButton.addEventListener('click', nextSlide);
+                prevButton.addEventListener('click', () => { showSlide(currentSlide - 1); });
+                setInterval(nextSlide, 5000);
+                showSlide(currentSlide);
+            }
+        });
+    </script>
+
+</body>
+</html>
