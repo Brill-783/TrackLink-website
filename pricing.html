@@ -4,184 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrackLink | Pricing Plans</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
     <style>
         :root {
-            --primary-color: #b89f66;
-            --primary-dark: #9c8455;
-            --bg-primary: #1a1a1a;
-            --bg-secondary: #2c2c2c; 
-            --text-primary: #ffffff; 
-            --text-secondary: #b0b0b0; 
-            --highlight-box-shadow: 0 4px 25px rgba(184, 159, 102, 0.15); 
-            --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.2);
-            --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            --success-color: #4CAF50;
+            --primary-color: #00B4FF;
+            --primary-dark: #0090CC;
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --shadow-light: 0 4px 15px rgba(0, 180, 255, 0.25);
+            --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --header-shadow: var(--shadow-dark);
+            --success-color: #00E676;
         }
-        
         body.light-mode {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f0f0f0;
+            --bg-primary: #f8f8f8;
+            --bg-secondary: #ffffff;
             --text-primary: #212121;
             --text-secondary: #555555;
-            --highlight-box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
-            --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.1);
             --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         body {
-            font-family: 'Inter', Arial, sans-serif; 
+            font-family: 'Inter', Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            background-color: var(--bg-primary); 
+            background-color: var(--bg-primary);
             color: var(--text-primary);
-            transition: background-color 0.4s ease, color 0.4s ease; 
+            transition: background-color 0.4s ease, color 0.4s ease;
             min-width: 320px;
         }
-        
         h1, h2, h3 {
-            font-family: 'Poppins', sans-serif; 
-            letter-spacing: 0.02em; 
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.02em;
             font-weight: 700;
         }
-        
-        .logo-image { height: 40px; width: auto; vertical-align: middle; transition: transform 0.2s ease-in-out; }
-        
-        .btn { 
-            text-decoration: none; padding: 12px 30px; border-radius: 5px; font-weight: 600; font-family: 'Poppins', sans-serif; 
-            transition: background-color 0.3s ease, transform 0.1s; text-transform: uppercase; font-size: 0.9em;
-            white-space: nowrap;
-        }
-        
-        .btn-primary { 
-            background-color: var(--primary-color); 
-            color: #1a1a1a; 
-            border: none; 
-            box-shadow: 0 4px 10px rgba(184, 159, 102, 0.4); 
-            font-weight: 700; 
-            padding: 15px 35px; 
-            font-size: 1em; 
-            border-radius: 8px; 
-        }
-        .btn-primary:hover { 
-            background-color: var(--primary-dark); 
-            transform: translateY(-3px); 
-        }
-        
-        .btn-nav {
-            background-color: transparent !important; 
-            color: var(--text-primary) !important; 
-            border: 2px solid var(--primary-color); 
-            box-shadow: none !important; 
-            font-weight: 500 !important; 
-            font-family: 'Inter', sans-serif !important; 
-            text-transform: none !important; 
-            padding: 8px 18px !important; 
-            font-size: 0.95em !important; 
-            border-radius: 5px !important; 
-        }
-        .btn-nav:hover {
-            background-color: var(--primary-color) !important;
-            color: var(--bg-primary) !important;
-            transform: translateY(-2px) !important;
-        }
-
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 30px 0;
-            text-align: left;
-        }
-        .feature-list li {
-            color: var(--text-primary);
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--bg-secondary);
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .feature-list li:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        .feature-list .icon {
-            color: var(--primary-color);
-            font-size: 1.1em;
-            width: 20px;
-            text-align: center;
-        }
-        .pricing-card.cross-border .feature-list .icon {
-            color: var(--primary-color);
-        }
-        .pricing-card:not(.cross-border) .feature-list .icon {
-            color: var(--success-color);
-        }
-
-        .main-header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 80px; background-color: var(--bg-primary); 
-            border-bottom: 1px solid var(--bg-secondary); 
-            position: sticky; top: 0; z-index: 1000;
-            box-shadow: var(--header-shadow);
-        }
-        .main-nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 40px; }
-        .nav-link { 
-            text-decoration: none; color: var(--text-secondary); font-weight: 500; 
-            padding: 5px 0; transition: color 0.3s ease; text-transform: uppercase; 
-            font-size: 0.95em; font-family: 'Inter', sans-serif; white-space: nowrap;
-        }
-        .nav-link:hover, .nav-link.active { 
-            color: var(--primary-color); 
-            border-bottom: 3px solid var(--primary-color); 
-        }
-
-        #mode-toggle.settings-gear { 
-            background: transparent; 
-            color: var(--primary-color); 
-            border: 1.5px solid var(--primary-color); 
-            border-radius: 50%; 
-            cursor: pointer; 
-            margin-left: 15px;
-            height: 45px; 
-            width: 45px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0; 
-            transition: all 0.3s ease;
-            font-size: 1.2em;
-        }
-        #mode-toggle.settings-gear:hover {
-            background-color: var(--primary-color);
-            color: var(--bg-primary);
-            transform: rotate(45deg); 
-        }
-        
-        .header-actions {
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-toggle {
-            display: none; 
-            cursor: pointer;
-            font-size: 1.5em;
-            color: var(--primary-color);
-            margin-left: 15px;
-            transition: color 0.3s ease;
-        }
-        .menu-toggle:hover {
-            color: var(--text-secondary);
-        }
-
         .loader {
             border: 8px solid var(--bg-secondary);
             border-top: 8px solid var(--primary-color);
@@ -211,25 +75,103 @@
             transition: opacity 0.3s ease;
         }
 
+        .logo-image { height: 40px; width: auto; vertical-align: middle; transition: none; }
+        /* LOGO UPDATE: Invert logo colors for dark mode */
+        body.dark-mode .logo-image {
+            filter: brightness(0) invert(1);
+        }
+        .btn {
+            text-decoration: none; padding: 12px 30px;
+            border-radius: 5px; font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, transform 0.1s, box-shadow 0.3s;
+            text-transform: uppercase; cursor: pointer; border: 2px solid transparent;
+            font-size: 0.9em; white-space: nowrap;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--bg-primary);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 180, 255, 0.4);
+            font-weight: 700;
+            padding: 15px 35px;
+            font-size: 1em;
+            border-radius: 8px;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 180, 255, 0.6);
+        }
+        .btn-secondary-icon {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            width: 45px; height: 45px;
+            display: flex; justify-content: center; align-items: center;
+            padding: 0; border-radius: 50%;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+        .btn-secondary-icon:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-primary);
+            transform: rotate(45deg);
+        }
+
+        .main-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 80px; background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--bg-secondary);
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: var(--header-shadow);
+        }
+        .main-nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 40px; }
+        .nav-link {
+            text-decoration: none; color: var(--text-secondary); font-weight: 500;
+            padding: 5px 0; transition: color 0.3s ease, border-bottom 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.95em; font-family: 'Inter', sans-serif; white-space: nowrap;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
         .pricing-section {
             padding: 80px 5%;
             text-align: center;
             background-color: var(--bg-secondary);
         }
-        
-        .pricing-section h1 { 
-            font-size: 3em; 
-            color: var(--primary-color); 
-            margin-bottom: 10px; 
+        .pricing-section h1 {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
-        
-        .pricing-section > p { 
-            font-size: 1.2em; 
-            color: var(--text-secondary); 
-            max-width: 900px; 
-            margin: 0 auto 40px auto; 
+        .pricing-section > p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 900px;
+            margin: 0 auto 40px auto;
         }
-        
         .equipment-display {
             font-size: 1.4em;
             font-weight: 600;
@@ -241,14 +183,12 @@
             border-radius: 8px;
             border: 2px solid var(--primary-color);
         }
-
         .pricing-container {
             display: flex;
             justify-content: center;
             gap: 40px;
             flex-wrap: wrap;
         }
-
         .pricing-card {
             background-color: var(--bg-primary);
             width: 100%;
@@ -257,16 +197,14 @@
             border-radius: 10px;
             box-shadow: var(--shadow-dark);
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform .3s, box-shadow .3s;
             border: 1px solid var(--bg-secondary);
-            position: relative; 
+            position: relative;
         }
-        
         .pricing-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 15px 40px rgba(0,0,0,.3);
         }
-        
         .pricing-card.cross-border {
             border: 3px solid var(--primary-color);
             transform: translateY(-10px);
@@ -274,7 +212,6 @@
         .pricing-card.cross-border:hover {
             transform: translateY(-15px);
         }
-
         .pricing-card h2 {
             font-size: 2.2em;
             color: var(--text-primary);
@@ -283,7 +220,6 @@
             margin-bottom: 20px;
             border-bottom: 3px solid var(--primary-color);
         }
-        
         .price-display {
             font-size: 4em;
             font-weight: 800;
@@ -291,13 +227,11 @@
             line-height: 1;
             margin-bottom: 10px;
         }
-        
         .price-display span {
-            font-size: 0.3em;
+            font-size: .3em;
             font-weight: 400;
             color: var(--text-secondary);
         }
-        
         .highlight-bar {
             background-color: var(--primary-color);
             color: var(--bg-primary);
@@ -308,166 +242,149 @@
             border-radius: 5px;
             text-transform: uppercase;
         }
-        
-        .main-footer { 
-            background-color: var(--bg-primary); 
-            color: var(--text-secondary); 
-            padding: 45px 80px; 
-            font-size: 0.9em; 
-            text-align: center; 
-            border-top: 1px solid var(--bg-secondary); 
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px;
+            text-align: left;
         }
-        .footer-links { 
-            list-style: none; padding: 0; margin: 20px 0; 
-            display: flex; justify-content: center; gap: 25px; 
+        .feature-list li {
+            color: var(--text-primary);
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--bg-secondary);
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .footer-links a { 
-            color: var(--primary-color); text-decoration: none; 
-            font-family: 'Inter', sans-serif; font-weight: 400; 
+        .feature-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .feature-list .icon {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+        }
+        .pricing-card.local {
+            border: 3px solid var(--success-color);
+        }
+        .pricing-card.local h2 {
+            border-bottom-color: var(--success-color);
+        }
+        .pricing-card.local .highlight-bar {
+            background-color: var(--success-color);
+            color: #121212;
+        }
+        .pricing-card.local .price-display {
+            color: var(--success-color);
+        }
+        .pricing-card.local .feature-list .icon {
+            color: var(--success-color);
+        }
+        .pricing-card.local .btn-primary {
+            background-color: var(--success-color);
+            color: #121212;
+            border-color: var(--success-color);
+            box-shadow: 0 4px 10px rgba(0, 230, 118, 0.4);
+        }
+        .pricing-card.local .btn-primary:hover {
+            background-color: #00C853;
+            border-color: #00C853;
+            color: white;
+        }
+
+        .main-footer {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            padding: 45px 80px;
+            font-size: 0.9em;
+            text-align: center;
+            border-top: 1px solid var(--bg-secondary);
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        body.light-mode .main-footer {
+            background-color: #000000;
+            color: #ffffff;
+            border-top: 1px solid #1e1e1e;
+        }
+        body.light-mode .main-footer .footer-links a,
+        body.light-mode .main-footer .social-icons a {
+            color: var(--primary-color);
+        }
+
+        body.light-mode .main-footer .footer-links a:hover,
+        body.light-mode .main-footer .social-icons a:hover {
+            color: #ffffff;
+        }
+        .footer-links {
+            list-style: none; padding: 0; margin: 20px 0;
+            display: flex; justify-content: center; gap: 25px;
+        }
+        .footer-links a {
+            color: var(--primary-color); text-decoration: none;
+            font-family: 'Inter', sans-serif; font-weight: 400;
             transition: color 0.3s;
         }
-        .footer-links a:hover { 
-            color: var(--text-primary); 
+        .footer-links a:hover {
+            color: var(--text-primary);
         }
-        .social-icons a { 
-            color: var(--primary-color); 
-            margin: 0 10px; 
-            font-size: 1.8em; 
-            text-decoration: none; 
-            transition: color 0.3s; 
+        .social-icons a {
+            color: var(--primary-color);
+            margin: 0 10px;
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: color 0.3s;
         }
-        .social-icons a:hover { 
-            color: var(--text-secondary); 
+        .social-icons a:hover {
+            color: var(--text-secondary);
         }
-        
+
         @media (max-width: 992px) {
-            .main-header {
-                padding: 15px 40px;
-            }
-            .main-nav ul {
-                gap: 20px;
-            }
-            .pricing-section h1 {
-                font-size: 2.5em;
-            }
-            .pricing-section > p {
-                font-size: 1.1em;
-            }
-            .pricing-container {
-                gap: 30px;
-            }
+            .main-header { padding: 15px 40px; }
+            .main-nav ul { gap: 20px; }
+            .pricing-section h1 { font-size: 2.5em; }
+            .pricing-section > p { font-size: 1.1em; }
+            .pricing-container { gap: 30px; }
         }
 
         @media (max-width: 768px) {
-            .main-header {
-                padding: 15px 20px;
-                flex-wrap: wrap; 
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .header-actions {
-                order: 2; 
-                gap: 5px;
-            }
-            
-            .main-nav {
-                order: 3; 
-                width: 100%;
-                margin-top: 10px;
-                display: none; 
-            }
+            .main-header { padding: 15px 20px; flex-wrap: wrap; }
+            .menu-toggle { display: block; }
+            .header-actions { gap: 5px; }
+            .main-nav { order: 3; width: 100%; margin-top: 10px; display: none; }
             .main-nav.active {
-                display: flex; 
-                flex-direction: column;
-                background-color: var(--bg-primary);
-                position: absolute;
-                top: 70px;
-                left: 0;
-                right: 0;
-                z-index: 999;
+                display: flex; flex-direction: column; background-color: var(--bg-primary);
+                position: absolute; top: 70px; left: 0; right: 0; z-index: 999;
                 border-bottom: 1px solid var(--bg-secondary);
                 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
             }
-            .main-nav ul {
-                flex-direction: column;
-                gap: 5px;
-                text-align: center;
-                padding: 10px 0;
-            }
-            .nav-link {
-                padding: 10px 20px;
-                border-bottom: none !important; 
-            }
-            .nav-link.active {
-                border-left: 3px solid var(--primary-color) !important; 
-                border-bottom: none !important;
-            }
-            
-            .btn-primary {
-                padding: 10px 18px;
-                font-size: 0.9em;
-            }
-            
-            .btn-nav {
-                padding: 8px 15px !important; 
-                font-size: 0.9em !important;
-            }
-            
-            #mode-toggle.settings-gear {
-                height: 40px;
-                width: 40px;
-                font-size: 1.1em;
-                margin-left: 10px;
-            }
+            .main-nav ul { flex-direction: column; gap: 5px; text-align: center; padding: 10px 0; }
+            .nav-link { padding: 10px 20px; border-bottom: none !important; }
+            .nav-link.active { border-left: 3px solid var(--primary-color) !important; border-bottom: none !important; }
+            .btn-primary { padding: 10px 18px; font-size: 0.9em; }
+            .btn-secondary-icon { height: 40px; width: 40px; font-size: 1.1em; margin-left: 10px; }
 
-            .pricing-section h1 {
-                font-size: 2em;
-            }
-            .equipment-display {
-                font-size: 1.1em;
-                padding: 10px 20px;
-            }
-            .pricing-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 25px;
-            }
-            .pricing-card {
-                max-width: 90%; 
-                padding: 30px 20px;
-            }
-            .pricing-card.cross-border {
-                transform: translateY(0); 
-            }
-            .pricing-card.cross-border:hover {
-                transform: translateY(-8px); 
-            }
-
-            .main-footer {
-                padding: 30px 20px;
-            }
-            .footer-links {
-                flex-direction: column;
-                gap: 10px;
-            }
+            .pricing-section h1 { font-size: 2em; }
+            .equipment-display { font-size: 1.1em; padding: 10px 20px; }
+            .pricing-container { flex-direction: column; align-items: center; gap: 25px; }
+            .pricing-card { max-width: 90%; padding: 30px 20px; }
+            .pricing-card.cross-border { transform: translateY(0); }
+            .pricing-card.cross-border:hover { transform: translateY(-8px); }
+            .main-footer { padding: 30px 20px; }
+            .footer-links { flex-direction: column; gap: 10px; }
         }
-        
+
         @media (max-width: 480px) {
             .logo-image { height: 35px; }
-            .pricing-section h1 {
-                font-size: 1.8em;
-            }
-            .price-display {
-                font-size: 3em;
-            }
+            .pricing-section h1 { font-size: 1.8em; }
+            .price-display { font-size: 3em; }
+            .btn-secondary-icon { font-size: 0.9em; width: 35px; height: 35px; }
         }
     </style>
 </head>
-<body class="dark-mode"> 
-    
+<body class="dark-mode">
     <div id="link-spinner-overlay">
         <div id="center-spinner" class="loader"></div>
     </div>
@@ -479,21 +396,21 @@
                     <img src="logo.png" alt="TrackLink GPS Logo" class="logo-image">
                 </a>
             </div>
-            
+
             <nav class="main-nav" id="main-nav">
                 <ul id="main-nav-list">
-                    <li><a href="index.html#hero" class="nav-link">Home</a></li>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="index.html#about" class="nav-link">About</a></li>
-                    <li><a href="features.html" class="nav-link">Features</a></li> 
-                    <li><a href="pricing.html" class="nav-link active">Pricing</a></li> 
+                    <li><a href="features.html" class="nav-link">Features</a></li>
+                    <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
-            
+
             <div class="header-actions">
-                <a href="#" class="btn btn-primary btn-nav">CLIENT LOGIN</a>
-                <button id="mode-toggle" class="settings-gear">
-                    <i class="fas fa-cog"></i>
+                <a href="https://tracclink.online/ui/auth/login" class="nav-link" target="_blank">Client Login</a>
+                <button id="mode-toggle" class="btn-secondary-icon" aria-label="Toggle Dark/Light Mode">
+                    <i id="mode-icon" class="fas fa-moon"></i>
                 </button>
                 <i class="fas fa-bars menu-toggle" id="menu-toggle-icon"></i>
             </div>
@@ -503,221 +420,161 @@
             <section class="pricing-section">
                 <h1>Simple, Operational Pricing</h1>
                 <p>Our operational plans ensure accurate, reliable tracking whether your fleet remains local or crosses borders.</p>
-                
-                <div class="equipment-display">
-                    One-time Equipment Fee (All Plans): <strong>K1800</strong> per unit
-                </div>
-                
-                <div class="pricing-container">
-                    
-                    <div class="pricing-card">
-                        <h2>Local Operations Plan</h2>
-                        
-                        <div class="highlight-bar" style="background-color: var(--success-color);">
-                            <i class="fas fa-gift"></i> **K250 / asset / month**
-                        </div>
 
-                        <div class="price-display" style="color: var(--success-color);">
-                            K250 <span>/ asset / month</span>
-                        </div>
-                        
+                <div class="pricing-container">
+                    <div class="pricing-card local">
+                        <h2>Local Operations Plan</h2>
+                        <div class="highlight-bar"><i class="fas fa-gift"></i> K250 / asset / month</div>
+                        <div class="price-display">K250 <span>/ asset / month</span></div>
                         <p style="color: var(--text-secondary); margin-bottom: 30px; margin-top: 20px;">Required for fleets operating **only within Zambia**. Includes all standard features.</p>
-                        
+
                         <ul class="feature-list">
                             <li><span class="icon"><i class="fas fa-check-circle"></i></span> Real-time GPS Tracking (Zambia Only)</li>
                             <li><span class="icon"><i class="fas fa-check-circle"></i></span> 90-day Data History</li>
                             <li><span class="icon"><i class="fas fa-check-circle"></i></span> Speeding & Geofence Alerts</li>
                             <li><span class="icon"><i class="fas fa-check-circle"></i></span> Basic Reports (Mileage, Stops)</li>
-                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Web & Mobile App Access</li>
-                            <li><span class="icon"><i class="fas fa-times-circle" style="color: var(--text-secondary);"></i></span> Cross-Border Roaming (Not Included)</li>
+                            <li><span class="icon"><i class="fas fa-times-circle" style="color: var(--text-secondary);"></i></span> Cross-Border Roaming</li>
                         </ul>
-                        
-                        <a href="contact.html" class="btn btn-primary" style="background-color: var(--success-color);">Start Local Tracking</a>
-                        
-                        <p style="font-size: 0.9em; margin-top: 15px; color: var(--text-secondary);">*First month subscription is **free**.</p>
+
+                        <a href="contact.html" class="btn btn-primary">Start Local Tracking</a>
+                        <p style="font-size: 0.9em; margin-top: 15px; color: var(--text-secondary);">*First month subscription is free.</p>
                     </div>
 
                     <div class="pricing-card cross-border">
                         <h2>Cross-Border Plan</h2>
-                        
-                        <p class="highlight-bar" style="background-color: var(--primary-color); color: var(--bg-primary);">
-                            <i class="fas fa-globe-africa"></i> **K350 / asset / month**
-                        </p>
-                        
-                        <div class="price-display">
-                            K350 <span>/ asset / month</span>
-                        </div>
-
+                        <p class="highlight-bar"><i class="fas fa-globe-africa"></i> K350 / asset / month</p>
+                        <div class="price-display">K350 <span>/ asset / month</span></div>
                         <p style="color: var(--text-secondary); margin-bottom: 30px; margin-top: 20px;">Required for fleets traversing **international borders** in the SADC region. Includes regional roaming.</p>
-                        
+
                         <ul class="feature-list">
                             <li><span class="icon"><i class="fas fa-check-circle"></i></span> Real-time GPS Tracking (Regional)</li>
                             <li><span class="icon"><i class="fas fa-check-circle"></i></span> Full 1-year Data History</li>
                             <li><span class="icon"><i class="fas fa-check-circle"></i></span> Advanced Alerting (Ignition, Harsh Driving)</li>
                             <li><span class="icon"><i class="fas fa-check-circle"></i></span> Comprehensive Reporting & Exports</li>
-                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Web & Mobile App Access</li>
-                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> **Cross-Border Roaming (SADC)**</li>
+                            <li><span class="icon"><i class="fas fa-check-circle"></i></span> Cross-Border (SADC)</li>
                         </ul>
-                        
+
                         <a href="contact.html" class="btn btn-primary">Start Cross-Border Tracking</a>
-                        
                         <p style="font-size: 0.9em; margin-top: 15px; color: var(--text-secondary);">*Contact sales for fleets over 50 vehicles.</p>
-
                     </div>
-
                 </div>
             </section>
         </main>
 
         <footer class="main-footer">
             <ul class="footer-links">
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="index.html#about">About Us</a></li>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms of Service</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <p>&copy; <span id="current-year">2025</span> TrackLink GPS Solutions. All rights reserved.</p>
             <div class="social-icons">
-                <a href="https://www.facebook.com/Tracklink.Official" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
-                <a href="https://www.tiktok.com/@tracklink_1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a> 
-                <a href="https://web.whatsapp.com/" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a> 
+                <a href="https://www.facebook.com/Tracklink.Official" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@tracklink_1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://web.whatsapp.com/" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
-            <p style="color: var(--text-secondary);">&copy; <span id="current-year">2025</span> TrackLink GPS System. All rights reserved.</p>
         </footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            
-            document.addEventListener('contextmenu', function(event) {
-                event.preventDefault();
-            });
-
-            document.addEventListener('keydown', function(event) {
-                if (event.keyCode == 123) {
-                    event.preventDefault();
-                    return false;
-                }
-                if (event.ctrlKey && event.shiftKey && (event.keyCode == 73 || event.keyCode == 74 || event.keyCode == 67)) {
-                    event.preventDefault();
-                    return false;
-                }
-                if (event.metaKey && event.altKey && (event.keyCode == 73 || event.keyCode == 74 || event.keyCode == 67)) {
-                    event.preventDefault();
-                    return false;
-                }
-                if (event.ctrlKey && event.keyCode == 85) {
-                    event.preventDefault();
-                    return false;
-                }
-            });
-            
+        document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
             const modeToggle = document.getElementById('mode-toggle');
-            const mainNav = document.getElementById('main-nav');
-            const menuToggleIcon = document.getElementById('menu-toggle-icon');
-            const navLinks = document.querySelectorAll('.main-nav .nav-link');
+            const modeIcon = document.getElementById('mode-icon');
+            const nav = document.getElementById('main-nav');
+            const menuToggle = document.getElementById('menu-toggle-icon');
             const spinnerOverlay = document.getElementById('link-spinner-overlay');
-            const centerSpinner = document.getElementById('center-spinner');
-            const themeKey = 'tracklinkTheme';
+            const spinner = document.getElementById('center-spinner');
+            const navLinks = document.querySelectorAll('.main-nav .nav-link');
 
             const yearSpan = document.getElementById('current-year');
             if (yearSpan) {
                 yearSpan.textContent = new Date().getFullYear();
             }
 
-            function applyTheme(theme) {
-                if (theme === 'light') {
-                    body.classList.add('light-mode');
-                } else {
-                    body.classList.remove('light-mode');
-                }
+            const savedMode = localStorage.getItem('themeMode') || 'dark-mode';
+            body.className = savedMode;
+            updateModeIcon(savedMode);
+
+            function updateModeIcon(mode) {
+                modeIcon.classList.remove('fa-moon', 'fa-sun');
+                modeIcon.classList.add(mode === 'light-mode' ? 'fa-sun' : 'fa-moon');
             }
-            const savedTheme = localStorage.getItem(themeKey);
-            applyTheme(savedTheme || 'dark'); 
 
             modeToggle.addEventListener('click', () => {
-                const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
-                localStorage.setItem(themeKey, newTheme);
-                applyTheme(newTheme);
-            });
-            
-            const currentPath = window.location.pathname.split('/').pop().split('#')[0] || 'index.html'; 
+                const isLight = body.classList.contains('light-mode');
+                const newMode = isLight ? 'dark-mode' : 'light-mode';
 
-            navLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
-                const resolvedLinkPath = linkHref.split('/').pop().split('#')[0] || 'index.html';
-
-                if (resolvedLinkPath === currentPath) {
-                    if (currentPath === 'pricing.html' && resolvedLinkPath === 'pricing.html') {
-                        link.classList.add('active');
-                    }
-                    else if (link.textContent.toLowerCase() === 'pricing' && resolvedLinkPath === 'pricing.html') {
-                           link.classList.add('active');
-                    }
-                    else {
-                        link.classList.remove('active');
-                    }
-                } else {
-                    link.classList.remove('active');
-                }
+                body.classList.remove(isLight ? 'light-mode' : 'dark-mode');
+                body.classList.add(newMode);
+                localStorage.setItem('themeMode', newMode);
+                updateModeIcon(newMode);
             });
-            
-            if (menuToggleIcon && mainNav) {
+
+            if (menuToggle && nav) {
                 const toggleMenu = () => {
-                    const isVisible = mainNav.classList.toggle('active');
-                    menuToggleIcon.classList.toggle('fa-bars', !isVisible);
-                    menuToggleIcon.classList.toggle('fa-times', isVisible);
+                    const isActive = nav.classList.toggle('active');
+                    menuToggle.classList.toggle('fa-bars', !isActive);
+                    menuToggle.classList.toggle('fa-times', isActive);
                 };
-                menuToggleIcon.addEventListener('click', toggleMenu);
-                
-                document.querySelectorAll('.main-nav .nav-link').forEach(link => {
-                    link.addEventListener('click', (event) => {
-                        if (window.innerWidth <= 768 && mainNav.classList.contains('active')) {
+                menuToggle.addEventListener('click', toggleMenu);
+
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768 && nav.classList.contains('active')) {
                             toggleMenu();
                         }
                     });
                 });
-                
+
                 window.addEventListener('resize', () => {
                     if (window.innerWidth > 768) {
-                        mainNav.classList.remove('active');
-                        menuToggleIcon.classList.remove('fa-times');
-                        menuToggleIcon.classList.add('fa-bars');
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('fa-times');
+                        menuToggle.classList.add('fa-bars');
                     }
                 });
             }
-            
-            const internalLinks = document.querySelectorAll('a[href]');
 
-            internalLinks.forEach(link => {
-                const href = link.getAttribute('href');
-                const isExternalOrAnchor = href.startsWith('http') || href.startsWith('#') || (href.split('/').pop().split('#')[0] === currentPath && href.includes('#'));
-                
-                if (!isExternalOrAnchor) {
-                    link.addEventListener('click', function(event) {
-                        event.preventDefault(); 
-                        
-                        if (spinnerOverlay) {
-                            spinnerOverlay.style.display = 'flex';
-                            setTimeout(() => {
-                                spinnerOverlay.style.opacity = '1';
-                                centerSpinner.classList.add('link-spin');
-                            }, 10); 
-                        }
+            const currentPath = window.location.pathname.split('/').pop().split('#')[0] || 'index.html';
+
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                const resolvedLinkPath = linkHref.split('/').pop().split('#')[0] || 'index.html';
+                link.classList.remove('active');
+
+                if (resolvedLinkPath === currentPath && currentPath === 'pricing.html') {
+                    link.classList.add('active');
+                } else if (resolvedLinkPath === currentPath && currentPath === 'index.html' && linkHref.indexOf('#') === -1) {
+                    link.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('a[href]').forEach(link => {
+                link.addEventListener('click', (event) => {
+                    const href = link.getAttribute('href');
+
+                    if (href === 'https://tracclink.online/ui/auth/login' || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#') || link.getAttribute('target') === '_blank') {
+                        return;
+                    }
+
+                    if (href && href !== '#') {
+                        event.preventDefault();
+
+                        spinnerOverlay.style.display = 'flex';
+                        setTimeout(() => {
+                            spinnerOverlay.style.opacity = '1';
+                            spinner.classList.add('link-spin');
+                        }, 10);
 
                         setTimeout(() => {
                             window.location.href = href;
-                        }, 500); 
-                    });
-                } else if (href.startsWith('#')) {
-                    link.addEventListener('click', function() {
-                        setTimeout(() => {
-                        }, 2000); 
-                    });
-                }
+                        }, 800);
+                    }
+                });
             });
         });
     </script>
-
 </body>
 </html>
