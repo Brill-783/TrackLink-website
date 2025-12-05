@@ -8,133 +8,219 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<style>
-
-
-
-<!-- EmailJS SDK -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-(function(){
-   emailjs.init("_VvtSbKVpx2kWd7a4"); // Your public key
-})();
-</script>
-
-<!-- reCAPTCHA v2 -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+</style>
 </head>
 <body class="dark-mode">
-<div id="link-spinner-overlay"><div id="center-spinner" class="loader"></div></div>
-<div id="main-content">
-<header class="main-header">
-  <div class="logo-container"><a href="index.html" class="logo-link"><img src="logo.png" alt="TrackLink GPS Logo" class="logo-image" id="site-logo"></a></div>
-  <nav class="main-nav" id="main-nav">
-    <ul id="main-nav-list">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="index.html#about" class="nav-link">About</a></li>
-      <li><a href="features.html" class="nav-link">Features</a></li>
-      <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-      <li><a href="contact.html" class="nav-link active">Contact</a></li>
-    </ul>
-  </nav>
-  <div class="header-actions">
-    <a href="https://tracclink.online/ui/auth/login" class="nav-link" target="_blank" style="margin-right:15px;">Client Login</a>
-    <button id="mode-toggle" class="btn-secondary-icon" aria-label="Toggle Dark/Light Mode"><i id="mode-icon" class="fas fa-moon"></i></button>
-    <i class="fas fa-bars menu-toggle" id="menu-toggle-icon"></i>
-  </div>
-</header>
-
-<main>
-<section class="contact-section">
-  <div class="contact-details">
-    <h1>Let's Connect</h1>
-    <p>Ready to streamline your operations or have a question about our telematics solution? Contact our enterprise team directly.</p>
-
-    <div class="contact-info-item">
-      <i class="fas fa-map-marker-alt"></i>
-      <div><strong>Our Office Location</strong><p style="margin:0;color:var(--text-secondary);">North Mead, Lusaka, Zambia</p></div>
-    </div>
-    <div class="contact-info-item">
-      <i class="fas fa-envelope"></i>
-      <div><strong>Email Support</strong><p style="margin:0;"><a href="mailto:tracklink@gmail.com" style="color:var(--text-secondary);text-decoration:none;">tracklink@gmail.com</a></p></div>
-    </div>
-    <div class="contact-info-item">
-      <i class="fas fa-phone-alt"></i>
-      <div><strong>Sales & Support Line</strong><p style="margin:0;"><a href="tel:+260573155118" style="color:var(--text-secondary);text-decoration:none;">+260 573 155 118</a></p></div>
-    </div>
+  <div id="link-spinner-overlay">
+    <div id="center-spinner" class="loader"></div>
   </div>
 
-  <div class="contact-form-container">
-    <h2>Send Us a Message</h2>
-    <form id="contact-form">
-      <input type="hidden" name="subject" value="TrackLink Website Inquiry from Contact Form">
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required>
+  <div id="main-content">
+    <header class="main-header">
+      <div class="logo-container">
+        <a href="index.html" class="logo-link">
+          <img src="logo.png" alt="TrackLink GPS Logo" class="logo-image" id="site-logo">
+        </a>
       </div>
-      <div class="form-group">
-        <label for="email">Work Email</label>
-        <input type="email" id="email" name="email" required>
+      <nav class="main-nav" id="main-nav">
+        <ul id="main-nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="features.html" class="nav-link">Features</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="https://tracclink.online/ui/auth/login" class="nav-link" target="_blank" style="margin-right:15px;">Client Login</a>
+        <button id="mode-toggle" class="btn-secondary-icon" aria-label="Toggle Dark/Light Mode"><i id="mode-icon" class="fas fa-moon"></i></button>
+        <i class="fas fa-bars menu-toggle" id="menu-toggle-icon"></i>
       </div>
-      <div class="form-group">
-        <label for="company">Company Name</label>
-        <input type="text" id="company" name="company">
-      </div>
-      <div class="form-group">
-        <label for="message">Your Message</label>
-        <textarea id="message" name="message" required></textarea>
-      </div>
+    </header>
 
-      <!-- reCAPTCHA -->
-      <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+    <main>
+      <section class="contact-section">
+        <div class="contact-details">
+          <h1>Let's Connect</h1>
+          <p>Ready to streamline your operations or have a question about our telematics solution? Contact our enterprise team directly.</p>
 
-      <button type="submit" class="btn btn-success" style="width:100%;margin-top:15px;padding:15px;">Submit Inquiry</button>
-      <p id="form-status" style="margin-top:15px;font-weight:600;"></p>
-    </form>
+          <div class="contact-info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Our Office Location</strong>
+              <p style="margin:0;color:var(--text-secondary);">North Mead, Lusaka, Zambia</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <strong>Email Support</strong>
+              <p style="margin:0;">
+                <a href="mailto:tracklink@gmail.com" style="color:var(--text-secondary);text-decoration:none;">tracklink@gmail.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+              <strong>Sales & Support Line</strong>
+              <p style="margin:0;">
+                <a href="tel:+260573155118" style="color:var(--text-secondary);text-decoration:none;">+260 573 155 118</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-container">
+          <h2>Send Us a Message</h2>
+          <form id="contact-form">
+            <input type="hidden" name="subject" value="TrackLink Website Inquiry from Contact Form">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="company">Company Name</label>
+              <input type="text" id="company" name="company">
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success" style="width:100%;margin-top:15px;padding:15px;">Submit Inquiry</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <ul class="footer-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p>&copy; <span id="current-year">2025</span> TrackLink GPS Solutions. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/Tracklink.Official" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@tracklink_1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://web.whatsapp.com/" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </footer>
   </div>
-</section>
-</main>
 
-<footer class="main-footer">
-<!-- your footer content unchanged -->
-</footer>
-</div>
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init("_VvtSbKVpx2kWd7a4"); // Your Public Key
+    })();
+  </script>
 
-<script>
-// Contact form submission using EmailJS
-document.getElementById("contact-form").addEventListener("submit", function(e){
-  e.preventDefault();
-  const form = this;
-  const status = document.getElementById("form-status");
-  const submitButton = form.querySelector("button[type='submit']");
-  
-  // Validate reCAPTCHA
-  const captcha = grecaptcha.getResponse();
-  if(!captcha){
-    status.textContent = "Please verify that you are not a robot.";
-    status.style.color = "red";
-    return;
-  }
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const body = document.body;
+      const modeToggle = document.getElementById('mode-toggle');
+      const modeIcon = document.getElementById('mode-icon');
+      const siteLogo = document.getElementById('site-logo');
+      const nav = document.getElementById('main-nav');
+      const menuToggle = document.getElementById('menu-toggle-icon');
+      const spinnerOverlay = document.getElementById('link-spinner-overlay');
+      const spinner = document.getElementById('center-spinner');
+      const navLinks = document.querySelectorAll('.main-nav .nav-link');
+      const yearSpan = document.getElementById('current-year');
+      const contactForm = document.getElementById('contact-form');
 
-  submitButton.disabled = true;
-  status.textContent = "Sending...";
-  status.style.color = "var(--text-primary)";
+      if(yearSpan){ yearSpan.textContent = new Date().getFullYear(); }
 
-  emailjs.sendForm('service_zkjd26g', 'template_3n9b2ge', form)
-    .then(() => {
-      status.textContent = "Your message has been sent successfully!";
-      status.style.color = "var(--success-color)";
-      form.reset();
-      grecaptcha.reset();
-      submitButton.disabled = false;
-    }, (err) => {
-      console.error(err);
-      status.textContent = "Oops! Something went wrong. Please try again.";
-      status.style.color = "red";
-      submitButton.disabled = false;
+      const savedMode = localStorage.getItem('themeMode')||'dark-mode';
+      body.className = savedMode;
+      updateModeIcon(savedMode);
+
+      function updateModeIcon(mode){
+        modeIcon.classList.remove('fa-moon','fa-sun');
+        modeIcon.classList.add(mode === 'light-mode'?'fa-sun':'fa-moon');
+      }
+
+      modeToggle.addEventListener('click',() => {
+        const isLight = body.classList.contains('light-mode');
+        const newMode = isLight?'dark-mode':'light-mode';
+        body.classList.remove(isLight?'light-mode':'dark-mode');
+        body.classList.add(newMode);
+        localStorage.setItem('themeMode',newMode);
+        updateModeIcon(newMode);
+      });
+
+      if(menuToggle && nav){
+        const toggleMenu = () => {
+          const isActive = nav.classList.toggle('active');
+          menuToggle.classList.toggle('fa-bars', !isActive);
+          menuToggle.classList.toggle('fa-times', isActive);
+        };
+        menuToggle.addEventListener('click', toggleMenu);
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if(window.innerWidth <= 768 && nav.classList.contains('active')){ toggleMenu(); }
+          });
+        });
+        window.addEventListener('resize', () => {
+          if(window.innerWidth > 768){ nav.classList.remove('active'); menuToggle.classList.remove('fa-times'); menuToggle.classList.add('fa-bars'); }
+        });
+      }
+
+      const currentPath = window.location.pathname.split('/').pop().split('#')[0] || 'index.html';
+      navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        const resolvedLinkPath = linkHref.split('/').pop().split('#')[0] || 'index.html';
+        link.classList.remove('active');
+        if(resolvedLinkPath === currentPath && currentPath === 'contact.html'){
+          link.classList.add('active');
+        } else if(resolvedLinkPath === currentPath && currentPath === 'index.html' && linkHref.indexOf('#') === -1){
+          link.classList.add('active');
+        }
+      });
+
+      document.querySelectorAll('a[href]').forEach(link => {
+        link.addEventListener('click',(event) => {
+          const href = link.getAttribute('href');
+          if(href === 'https://tracclink.online/ui/auth/login'||href.startsWith('mailto:')||href.startsWith('tel:')||href.startsWith('#')||link.getAttribute('target') === '_blank'){return;}
+          if(href && href !== '#'){
+            event.preventDefault();
+            spinnerOverlay.style.display = 'flex';
+            setTimeout(() => { spinnerOverlay.style.opacity = '1'; spinner.classList.add('link-spin'); }, 10);
+            setTimeout(() => { window.location.href = href; }, 800);
+          }
+        });
+      });
+
+      // EmailJS form submission
+      contactForm.addEventListener('submit', function(event){
+        event.preventDefault();
+
+        const formData = {
+          name: contactForm.name.value,
+          email: contactForm.email.value,
+          company: contactForm.company.value,
+          message: contactForm.message.value,
+          subject: contactForm.subject.value
+        };
+
+        emailjs.send("service_zkjd26g","template_3n9b2ge", formData)
+          .then(function(response){
+            alert("Your message was sent successfully!");
+            contactForm.reset();
+          }, function(error){
+            alert("Oops! Something went wrong. Please try again.");
+            console.log(error);
+          });
+      });
     });
-});
-</script>
+  </script>
 </body>
 </html>
